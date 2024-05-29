@@ -20,6 +20,7 @@ void main() async {
             appId: "1:298934362650:web:dbc179a4e4582af124a7a3",
             measurementId: "G-YF6KQXMBZK"
         )
+
     );
         // Awais Farooq Firebase Configuration
         // await Firebase.initializeApp(
