@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:location/location.dart' as loc;
@@ -9,18 +10,36 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     await Firebase.initializeApp(
-        options: FirebaseOptions(
+        options: const FirebaseOptions(
             apiKey: "AIzaSyBcA4klUGzIamW7PC-nERoW9zcEVCWjLfg",
-            authDomain: "location-e5cc0.firebaseapp.com",
-            projectId: "location-e5cc0",
-            storageBucket: "location-e5cc0.appspot.com",
-            messagingSenderId: "132021888954",
-            appId: "1:132021888954:web:9a8e12d10f6b4b1c93df83"
+            //metaxperts apiKey: "AIzaSyDWoxlTqTARPPm-dk0AL6JN1kJwWksDpro",
+            authDomain: "courage-erp.firebaseapp.com",
+            projectId: "courage-erp",
+            storageBucket: "courage-erp.appspot.com",
+            messagingSenderId: "298934362650",
+            appId: "1:298934362650:web:dbc179a4e4582af124a7a3",
+            measurementId: "G-YF6KQXMBZK"
         )
     );
-    print("Initialize is OK");
+        // Awais Farooq Firebase Configuration
+        // await Firebase.initializeApp(
+    //     options: const FirebaseOptions(
+    //         apiKey: "AIzaSyBcA4klUGzIamW7PC-nERoW9zcEVCWjLfg",
+    //         authDomain: "location-e5cc0.firebaseapp.com",
+    //         projectId: "location-e5cc0",
+    //         storageBucket: "location-e5cc0.appspot.com",
+    //         messagingSenderId: "132021888954",
+    //         appId: "1:132021888954:web:9a8e12d10f6b4b1c93df83"
+    //     )
+    // );
+
+    if (kDebugMode) {
+      print("Initialize is OK");
+    }
   } catch(e) {
-    print("Initialize failed: $e");
+    if (kDebugMode) {
+      print("Initialize failed: $e");
+    }
   }
   runApp(MyApp());
 }
@@ -116,13 +135,13 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
       stream: FirebaseFirestore.instance.collection('location').snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image(
+                const Image(
                     width: 600,
                     height: 400,
                     image: AssetImage(
